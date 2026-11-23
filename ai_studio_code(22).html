@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Przystań Logopedy&nbsp;– Alicja Went | Neurologopeda w&nbsp;Rumi</title>
+  <meta name="description" content="Przystań Logopedy – gabinet neurologopedyczny Alicji Went w Rumi (ul. Wejhera 3/2). Neurologopedia, logopedia, terapia czaszkowo-krzyżowa, terapia neurotaktylna, stymulatory MFS, Terapia Ręki i TUS." />
+  <meta property="og:title" content="Przystań Logopedy – Alicja Went, Rumia" />
+  <meta property="og:description" content="Spokojna przestrzeń rozwoju mowy i regulacji układu nerwowego dla dzieci i dorosłych." />
+  <meta property="og:image" content="alicja-went.png" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='20' fill='%23A85C45'/><path d='M18 40c6-10 22-10 28 0' stroke='%23FDF8F1' stroke-width='4' fill='none' stroke-linecap='round'/><circle cx='32' cy='24' r='6' fill='%23FDF3E1'/></svg>" />
+
+  <!-- Fonty: Lora (nagłówki) + Plus Jakarta Sans (treść) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Style przycisku rezerwacji Google -->
+  <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet" />
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream:  '#FDF8F1',   // tło główne – ciepły krem mleczny
+            oat:    '#F6ECE0',   // ciepły owsiany beż sekcji
+            butter: '#FDF3E1',   // miękkie słoneczne masło
+            peach:  '#FAE9DF',   // delikatna brzoskwinia
+            sand:   '#E8D4BE',   // piaskowe obramowania
+            honey:  '#C98A43',   // ciepły miód
+            taupe:  '#856E61',   // ciepły brąz tekstów pomocniczych
+            clay: {
+              50:  '#FBF0EB',    // bardzo delikatny róż-brzoskwinia
+              100: '#F4DED5',
+              500: '#A85C45',    // kolor przewodni – ciepła, przyjazna terakota
+              600: '#944E39',
+              700: '#7B3F2D',
+            },
+            mocha:  '#5A463D',   // przytulny ciepły kasztan (stopka)
+            cocoa:  '#3E312B',   // ciepły brąz tekstów
+            line:   '#EFE0CE',   // miękkie, ciepłe obramowania
+          },
+          fontFamily: {
+            serif: ['Lora', 'Georgia', 'serif'],
+            sans:  ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            soft: '0 2px 6px rgba(62,49,43,.04), 0 14px 34px -14px rgba(164,120,90,.20)',
+            lift: '0 4px 10px rgba(62,49,43,.05), 0 24px 48px -18px rgba(164,120,90,.28)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Ikony Lucide -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+  <style>
+    html { scroll-padding-top: 88px; }
+    body { -webkit-font-smoothing: antialiased; }
+    ::selection { background: #FAE9DF; color: #3E312B; }
+
+    /* Animacje pojawiania się przy przewijaniu */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.65,.3,1), transform .8s cubic-bezier(.2,.65,.3,1); }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .08s; }
+    .reveal-delay-2 { transition-delay: .16s; }
+    .reveal-delay-3 { transition-delay: .24s; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* Ciepła, słoneczna poświata w tle */
+    .warm-glow {
+      background-image:
+        radial-gradient(circle at 12% 14%, rgba(250,233,223,.90) 0, transparent 46%),
+        radial-gradient(circle at 86% 24%, rgba(253,243,225,.95) 0, transparent 44%),
+        radial-gradient(circle at 65% 85%, rgba(251,240,235,.85) 0, transparent 44%);
+    }
+
+    /* Organiczny kształt dla kontenerów ikon */
+    .pebble { border-radius: 42% 58% 54% 46% / 48% 42% 58% 52%; }
+
+    /* Nawigacja po przewinięciu */
+    #navbar.scrolled {
+      background: rgba(253,248,241,.90);
+      box-shadow: 0 1px 0 #EFE0CE, 0 12px 30px -18px rgba(164,120,90,.28);
+      backdrop-filter: saturate(140%) blur(14px);
+      -webkit-backdrop-filter: saturate(140%) blur(14px);
+    }
+
+    /* Pola formularza */
+    .field { width: 100%; border-radius: 1rem; border: 1.5px solid #EFE0CE; background: #FFFDF9; padding: .85rem 1.05rem; font-size: .95rem; color: #3E312B; transition: border-color .2s, box-shadow .2s; }
+    .field::placeholder { color: #AA978A; }
+    .field:focus { outline: none; border-color: #A85C45; box-shadow: 0 0 0 4px rgba(168,92,69,.14); }
+
+    /* Pływający przycisk rezerwacji w prawym dolnym rogu */
+    #floatingGoogleBooking {
+      position: fixed;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      z-index: 45;
+    }
+    #floatingGoogleBooking .qxCTlb {
+      border-radius: 9999px !important;
+      padding: .85rem 1.45rem !important;
+      font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif !important;
+      font-weight: 600 !important;
+      font-size: .95rem !important;
+      box-shadow: 0 10px 28px -6px rgba(62,49,43,.32) !important;
+      transition: transform .2s ease, box-shadow .2s ease !important;
+    }
+    #floatingGoogleBooking .qxCTlb:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px -6px rgba(62,49,43,.40) !important;
+    }
+
+    /* Naprawa przezroczystego tła wyskakującego okienka rezerwacji */
+    iframe[src*="calendar.google.com"] {
+      background: #FFFFFF !important;
+      background-color: #FFFFFF !important;
+      color-scheme: light;
+    }
+
+    details > summary::-webkit-details-marker { display: none; }
+  </style>
+</head>
+
+<body class="bg-cream font-sans text-cocoa leading-relaxed">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-full focus:bg-clay-500 focus:px-4 focus:py-2 focus:text-white">Przejdź do&nbsp;treści</a>
+
+  <!-- =========================================================
+       NAWIGACJA (sticky)
+  ========================================================== -->
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <nav class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8" aria-label="Nawigacja główna">
+      <a href="#start" class="group flex items-center gap-3">
+        <span class="pebble grid h-11 w-11 place-items-center bg-clay-500 text-cream shadow-soft transition group-hover:scale-105 group-hover:bg-clay-600">
+          <i data-lucide="anchor" class="h-5 w-5"></i>
+        </span>
+        <span class="leading-tight">
+          <span class="block font-serif text-lg font-semibold tracking-tight text-cocoa">Przystań Logopedy</span>
+          <span class="block text-[11px] font-medium uppercase tracking-[.16em] text-taupe">Alicja Went · Rumia</span>
+        </span>
+      </a>
+
+      <ul class="hidden items-center gap-8 text-[15px] font-medium text-cocoa/80 lg:flex">
+        <li><a href="#o-mnie" class="nav-link transition hover:text-clay-500">O&nbsp;gabinecie</a></li>
+        <li><a href="#oferta" class="nav-link transition hover:text-clay-500">Oferta</a></li>
+        <li><a href="#nowosci" class="nav-link transition hover:text-clay-500">Nowości</a></li>
+        <li><a href="#opinie" class="nav-link transition hover:text-clay-500">Opinie</a></li>
+        <li><a href="#kontakt" class="nav-link transition hover:text-clay-500">Kontakt</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <a href="#kontakt" class="hidden items-center gap-2 rounded-full bg-clay-500 px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-clay-600 sm:inline-flex">
+          <i data-lucide="mail" class="h-4 w-4"></i> Napisz do&nbsp;mnie
+        </a>
+        <button id="menuBtn" type="button" class="grid h-11 w-11 place-items-center rounded-full border border-line bg-white/80 text-cocoa transition hover:bg-white lg:hidden" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobileMenu">
+          <i data-lucide="menu" class="h-5 w-5 icon-open"></i>
+          <i data-lucide="x" class="hidden h-5 w-5 icon-close"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menu mobilne -->
+    <div id="mobileMenu" class="pointer-events-none absolute inset-x-0 top-20 origin-top scale-y-95 opacity-0 transition duration-200 lg:hidden">
+      <div class="mx-4 rounded-[1.75rem] border border-line bg-cream/95 p-4 shadow-lift backdrop-blur">
+        <ul class="flex flex-col text-base font-medium">
+          <li><a href="#o-mnie" class="mobile-link flex items-center justify-between rounded-2xl px-4 py-3 hover:bg-oat/70">O&nbsp;gabinecie <i data-lucide="chevron-right" class="h-4 w-4 text-taupe"></i></a></li>
+          <li><a href="#oferta" class="mobile-link flex items-center justify-between rounded-2xl px-4 py-3 hover:bg-oat/70">Oferta <i data-lucide="chevron-right" class="h-4 w-4 text-taupe"></i></a></li>
+          <li><a href="#nowosci" class="mobile-link flex items-center justify-between rounded-2xl px-4 py-3 hover:bg-oat/70">Nowości <i data-lucide="chevron-right" class="h-4 w-4 text-taupe"></i></a></li>
+          <li><a href="#opinie" class="mobile-link flex items-center justify-between rounded-2xl px-4 py-3 hover:bg-oat/70">Opinie <i data-lucide="chevron-right" class="h-4 w-4 text-taupe"></i></a></li>
+          <li><a href="#kontakt" class="mobile-link flex items-center justify-between rounded-2xl px-4 py-3 hover:bg-oat/70">Kontakt <i data-lucide="chevron-right" class="h-4 w-4 text-taupe"></i></a></li>
+        </ul>
+        <a href="#kontakt" class="mobile-link mt-3 flex items-center justify-center gap-2 rounded-2xl bg-clay-500 px-5 py-3.5 font-semibold text-white">
+          <i data-lucide="mail" class="h-4 w-4"></i> Napisz do&nbsp;mnie
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+    <section id="start" class="warm-glow relative overflow-hidden pt-28 pb-20 sm:pt-36 lg:pb-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-12">
+        <div class="lg:col-span-6 reveal">
+          <span class="inline-flex items-center gap-2 rounded-full border border-sand bg-butter/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-[.14em] text-clay-600 shadow-sm">
+            <i data-lucide="heart" class="h-3.5 w-3.5 fill-clay-500/20 text-clay-500"></i> Gabinet neurologopedyczny w&nbsp;Rumi
+          </span>
+          <h1 class="mt-6 font-serif text-4xl font-medium leading-[1.14] tracking-tight text-cocoa sm:text-5xl lg:text-[3.5rem]">
+            Spokojna przestrzeń rozwoju, mowy i&nbsp;<span class="relative inline-block italic text-clay-500">regulacji układu nerwowego<svg class="absolute -bottom-1.5 left-0 h-3 w-full text-honey/65" viewBox="0 0 260 12" fill="none" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8.5C58 2.5 130 2 258 7.5" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg></span>
+          </h1>
+          <p class="mt-6 max-w-xl text-lg text-cocoa/80">
+            Przystań Logopedy to&nbsp;gabinet Alicji Went w&nbsp;Rumi&nbsp;– ciepłe miejsce, w&nbsp;którym dzieci i&nbsp;dorośli otrzymują uważne, holistyczne wsparcie. Łączę neurologopedię z&nbsp;delikatnymi metodami pracy z&nbsp;ciałem, aby terapia przebiegała we&nbsp;własnym tempie i&nbsp;w&nbsp;poczuciu bezpieczeństwa.
+          </p>
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="#kontakt" class="inline-flex items-center justify-center gap-2 rounded-full bg-clay-500 px-7 py-4 font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-clay-600 hover:shadow-lift">
+              <i data-lucide="message-circle-heart" class="h-5 w-5"></i> Skontaktuj się
+            </a>
+            <a href="#oferta" class="inline-flex items-center justify-center gap-2 rounded-full border border-sand bg-white/85 px-7 py-4 font-semibold text-cocoa transition hover:border-clay-500/50 hover:bg-white">
+              Poznaj ofertę <i data-lucide="arrow-down" class="h-4 w-4 text-clay-500"></i>
+            </a>
+          </div>
+          <dl class="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-sand/80 pt-8">
+            <div>
+              <dt class="text-xs font-medium uppercase tracking-wider text-taupe">Dla kogo</dt>
+              <dd class="mt-1 font-serif text-lg text-cocoa">Dzieci i&nbsp;dorośli</dd>
+            </div>
+            <div>
+              <dt class="text-xs font-medium uppercase tracking-wider text-taupe">Podejście</dt>
+              <dd class="mt-1 font-serif text-lg text-cocoa">Holistyczne</dd>
+            </div>
+            <div>
+              <dt class="text-xs font-medium uppercase tracking-wider text-taupe">Zapisy</dt>
+              <dd class="mt-1 font-serif text-lg text-cocoa">Online i&nbsp;tel.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="relative mx-auto w-full max-w-lg lg:col-span-6 reveal reveal-delay-2">
+          <div class="absolute -right-8 -top-8 h-60 w-60 rounded-full bg-butter blur-2xl"></div>
+          <div class="absolute -bottom-10 -left-8 h-52 w-52 rounded-full bg-peach blur-2xl"></div>
+          <!-- Miękka ramka organiczna pod zdjęciem -->
+          <div class="absolute inset-0 -rotate-2 rounded-[2.6rem] bg-peach/90"></div>
+          <figure class="relative overflow-hidden rounded-[2.5rem] border-4 border-white bg-oat shadow-lift">
+            <img
+              src="alicja-went.png"
+              alt="Alicja Went – neurologopeda, właścicielka gabinetu Przystań Logopedy w Rumi"
+              class="aspect-[4/4.4] w-full object-cover object-[50%_18%]"
+              width="736" height="810" fetchpriority="high" />
+          </figure>
+          <div class="absolute -bottom-5 left-4 flex items-center gap-3.5 rounded-3xl border border-line bg-white/95 px-5 py-3.5 shadow-soft backdrop-blur sm:left-8">
+            <span class="pebble grid h-11 w-11 place-items-center bg-peach text-clay-500"><i data-lucide="sprout" class="h-5 w-5"></i></span>
+            <div>
+              <p class="text-sm font-semibold text-cocoa">mgr&nbsp;Alicja Went</p>
+              <p class="text-xs text-taupe">Neurologopeda · terapeutka MFS</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         NOWOŚĆ – Ruszamy z zapisami!
+    ========================================================== -->
+    <section id="nowosci" class="py-16 sm:py-24">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal relative overflow-hidden rounded-[2.5rem] border border-sand/80 bg-gradient-to-br from-butter via-peach/50 to-white p-8 shadow-soft sm:p-12 lg:p-14">
+          <div class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-butter blur-2xl"></div>
+          <div class="absolute -bottom-20 left-1/3 h-64 w-64 rounded-full bg-clay-50/90 blur-2xl"></div>
+          <div class="relative grid gap-10 lg:grid-cols-12 lg:items-center">
+            <div class="lg:col-span-5">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="rounded-full bg-clay-500/15 px-3.5 py-1 text-xs font-bold uppercase tracking-[.16em] text-clay-600">Nowość</span>
+                <span class="inline-flex items-center gap-2 rounded-full bg-honey px-3.5 py-1 text-xs font-semibold text-white">
+                  <span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-white"></span></span>
+                  Otwarte zapisy
+                </span>
+              </div>
+              <h2 class="mt-5 font-serif text-3xl font-medium leading-tight sm:text-4xl">Ruszamy z&nbsp;zapisami!</h2>
+              <p class="mt-4 text-cocoa/80">
+                Przystań Logopedy rozszerza działalność. Z&nbsp;radością zapraszam na&nbsp;dwa nowe kierunki wsparcia, które naturalnie uzupełniają terapię mowy i&nbsp;pomagają dzieciom pewniej funkcjonować na&nbsp;co dzień&nbsp;– w&nbsp;domu, w&nbsp;przedszkolu i&nbsp;w&nbsp;szkole.
+              </p>
+              <a href="#kontakt" class="mt-8 inline-flex items-center gap-2 rounded-full bg-clay-500 px-6 py-3.5 font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-clay-600">
+                Zapisz się lub zapytaj o&nbsp;termin <i data-lucide="arrow-right" class="h-4 w-4"></i>
+              </a>
+            </div>
+            <div class="grid gap-5 sm:grid-cols-2 lg:col-span-7">
+              <article class="reveal reveal-delay-1 rounded-[2rem] border border-line bg-white/95 p-7 shadow-soft">
+                <span class="pebble grid h-12 w-12 place-items-center bg-butter text-honey"><i data-lucide="hand" class="h-6 w-6"></i></span>
+                <h3 class="mt-5 font-serif text-xl font-medium">Terapia Ręki</h3>
+                <p class="mt-3 text-[15px] text-cocoa/75">Wsparcie motoryki małej, precyzji ruchów i&nbsp;prawidłowego napięcia mięśniowego. Ćwiczenia przygotowujące do&nbsp;nauki pisania&nbsp;– w&nbsp;formie przyjaznej zabawy dostosowanej do&nbsp;wieku dziecka.</p>
+                <ul class="mt-5 space-y-2 text-sm text-cocoa/80">
+                  <li class="flex gap-2"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-honey"></i>chwyt, koordynacja oko–ręka</li>
+                  <li class="flex gap-2"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-honey"></i>grafomotoryka i&nbsp;gotowość szkolna</li>
+                </ul>
+              </article>
+              <article class="reveal reveal-delay-2 rounded-[2rem] border border-line bg-white/95 p-7 shadow-soft">
+                <span class="pebble grid h-12 w-12 place-items-center bg-peach text-clay-500"><i data-lucide="users-round" class="h-6 w-6"></i></span>
+                <h3 class="mt-5 font-serif text-xl font-medium">TUS&nbsp;– Trening Umiejętności Społecznych</h3>
+                <p class="mt-3 text-[15px] text-cocoa/75">Rozwijanie komunikacji, rozpoznawania i&nbsp;wyrażania emocji oraz budowania relacji w&nbsp;grupie rówieśniczej&nbsp;– w&nbsp;małej, bezpiecznej i&nbsp;życzliwej grupie.</p>
+                <ul class="mt-5 space-y-2 text-sm text-cocoa/80">
+                  <li class="flex gap-2"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-clay-500"></i>współpraca i&nbsp;rozwiązywanie konfliktów</li>
+                  <li class="flex gap-2"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-clay-500"></i>radzenie sobie z&nbsp;emocjami</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Miękka fala dzieląca sekcje -->
+    <div class="overflow-hidden text-oat/85 leading-none" aria-hidden="true">
+      <svg class="h-8 w-full sm:h-12" viewBox="0 0 1440 48" fill="currentColor" preserveAspectRatio="none"><path d="M0,32 C320,64 640,0 960,28 C1200,48 1340,20 1440,8 L1440,48 L0,48 Z"/></svg>
+    </div>
+
+    <!-- =========================================================
+         OFERTA I METODY PRACY
+    ========================================================== -->
+    <section id="oferta" class="bg-oat/85 py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="mx-auto max-w-2xl text-center reveal">
+          <p class="text-xs font-bold uppercase tracking-[.2em] text-clay-600">Oferta i&nbsp;metody pracy</p>
+          <h2 class="mt-4 font-serif text-3xl font-medium leading-tight sm:text-[2.6rem]">Wsparcie dopasowane do&nbsp;potrzeb&nbsp;– od&nbsp;mowy po&nbsp;regulację ciała</h2>
+          <p class="mt-5 text-cocoa/75">Każda terapia zaczyna się od&nbsp;spokojnej rozmowy i&nbsp;rzetelnej diagnozy. Metody dobieram indywidualnie, tłumacząc rodzicom, czemu służą i&nbsp;czego można się po&nbsp;nich spodziewać.</p>
+        </div>
+
+        <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <article class="reveal group rounded-[2rem] border border-line bg-white/95 p-7 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+            <span class="pebble grid h-12 w-12 place-items-center bg-peach text-clay-500 transition group-hover:bg-clay-500 group-hover:text-white"><i data-lucide="brain" class="h-6 w-6"></i></span>
+            <h3 class="mt-5 font-serif text-xl font-medium">Neurologopedia</h3>
+            <p class="mt-3 text-[15px] text-cocoa/75">Diagnoza i&nbsp;terapia zaburzeń mowy oraz komunikacji o&nbsp;podłożu neurologicznym&nbsp;– u&nbsp;dzieci (m.in.&nbsp;opóźniony rozwój mowy) i&nbsp;u&nbsp;dorosłych (np.&nbsp;po&nbsp;udarze czy urazach).</p>
+          </article>
+
+          <article class="reveal reveal-delay-1 group rounded-[2rem] border border-line bg-white/95 p-7 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+            <span class="pebble grid h-12 w-12 place-items-center bg-butter text-honey transition group-hover:bg-honey group-hover:text-white"><i data-lucide="message-circle-heart" class="h-6 w-6"></i></span>
+            <h3 class="mt-5 font-serif text-xl font-medium">Logopedia</h3>
+            <p class="mt-3 text-[15px] text-cocoa/75">Korekcja wad wymowy i&nbsp;wspieranie prawidłowego rozwoju mowy. Ćwiczenia w&nbsp;formie zabawy oraz wskazówki do&nbsp;pracy w&nbsp;domu, które angażują rodziców.</p>
+          </article>
+
+          <article class="reveal reveal-delay-2 group rounded-[2rem] border border-line bg-white/95 p-7 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+            <span class="pebble grid h-12 w-12 place-items-center bg-clay-50 text-clay-500 transition group-hover:bg-clay-500 group-hover:text-white"><i data-lucide="waves" class="h-6 w-6"></i></span>
+            <h3 class="mt-5 font-serif text-xl font-medium">Terapia czaszkowo-krzyżowa</h3>
+            <p class="mt-3 text-[15px] text-cocoa/75">Delikatna, manualna praca z&nbsp;układem nerwowym i&nbsp;napięciami w&nbsp;ciele. Może wspierać rozluźnienie obszaru ustno-twarzowego i&nbsp;ogólne wyciszenie organizmu.</p>
+          </article>
+
+          <article class="reveal group rounded-[2rem] border border-line bg-white/95 p-7 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+            <span class="pebble grid h-12 w-12 place-items-center bg-butter text-honey transition group-hover:bg-honey group-hover:text-white"><i data-lucide="feather" class="h-6 w-6"></i></span>
+            <h3 class="mt-5 font-serif text-xl font-medium">Terapia neurotaktylna</h3>
+            <p class="mt-3 text-[15px] text-cocoa/75">Metoda oparta na&nbsp;dotyku, wspierająca regulację sensoryczną, wyciszenie oraz integrację odruchów. Pomaga dziecku lepiej odbierać bodźce i&nbsp;czuć się pewniej we&nbsp;własnym ciele.</p>
+          </article>
+
+          <article class="reveal reveal-delay-1 group rounded-[2rem] border border-line bg-white/95 p-7 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+            <span class="pebble grid h-12 w-12 place-items-center bg-clay-50 text-clay-500 transition group-hover:bg-clay-500 group-hover:text-white"><i data-lucide="zap" class="h-6 w-6"></i></span>
+            <h3 class="mt-5 font-serif text-xl font-medium">Elektrostymulacja</h3>
+            <p class="mt-3 text-[15px] text-cocoa/75">Nowoczesne wsparcie pracy mięśni obszaru ustno-twarzowego. Stosowana jako uzupełnienie terapii, po&nbsp;kwalifikacji i&nbsp;z&nbsp;uwzględnieniem przeciwwskazań.</p>
+          </article>
+
+          <article class="reveal reveal-delay-2 group rounded-[2rem] border border-line bg-white/95 p-7 shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+            <span class="pebble grid h-12 w-12 place-items-center bg-peach text-clay-500 transition group-hover:bg-clay-500 group-hover:text-white"><i data-lucide="wind" class="h-6 w-6"></i></span>
+            <h3 class="mt-5 font-serif text-xl font-medium">Stymulatory MFS</h3>
+            <p class="mt-3 text-[15px] text-cocoa/75">Terapia funkcji motorycznych i&nbsp;oddechowych w&nbsp;obrębie narządu żucia i&nbsp;mowy. Wspiera m.in.&nbsp;prawidłową pozycję języka, oddychanie torem nosowym i&nbsp;połykanie.</p>
+          </article>
+
+          <article class="reveal group rounded-[2rem] border border-clay-500/20 bg-clay-500 p-7 text-white shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lift sm:col-span-2 lg:col-span-3 lg:flex lg:items-center lg:justify-between lg:gap-10 lg:p-9">
+            <div class="flex items-start gap-5">
+              <span class="pebble grid h-12 w-12 shrink-0 place-items-center bg-white/20 text-butter"><i data-lucide="clipboard-list" class="h-6 w-6"></i></span>
+              <div>
+                <h3 class="font-serif text-xl font-medium">Konsultacje specjalistyczne</h3>
+                <p class="mt-2 max-w-2xl text-[15px] text-white/90">Kompleksowa ocena potrzeb, rozmowa o&nbsp;dotychczasowym rozwoju i&nbsp;dobór indywidualnego planu terapii. Dobry pierwszy krok, jeśli nie wiesz, od&nbsp;czego zacząć.</p>
+              </div>
+            </div>
+            <a href="#kontakt" class="mt-6 inline-flex shrink-0 items-center gap-2 rounded-full bg-butter px-6 py-3.5 font-semibold text-cocoa shadow-sm transition hover:bg-white lg:mt-0">
+              Umów konsultację <i data-lucide="arrow-right" class="h-4 w-4 text-clay-500"></i>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Miękka fala powrotna -->
+    <div class="overflow-hidden bg-oat/85 text-cream leading-none" aria-hidden="true">
+      <svg class="h-8 w-full sm:h-12" viewBox="0 0 1440 48" fill="currentColor" preserveAspectRatio="none"><path d="M0,16 C360,52 720,-8 1080,26 C1260,42 1380,24 1440,12 L1440,48 L0,48 Z"/></svg>
+    </div>
+
+    <!-- =========================================================
+         O MNIE – Alicja Went
+    ========================================================== -->
+    <section id="o-mnie" class="py-20 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-12">
+        <div class="relative mx-auto w-full max-w-md lg:col-span-5 reveal">
+          <div class="absolute -left-4 -top-4 h-32 w-32 rounded-full bg-butter blur-xl"></div>
+          <div class="absolute inset-0 translate-x-4 translate-y-4 rotate-2 rounded-[2.25rem] bg-peach"></div>
+          <img
+            src="alicja-went.png"
+            alt="Portret Alicji Went, neurologopedy z Rumi"
+            class="relative aspect-[4/5] w-full rounded-[2.25rem] border-4 border-white object-cover object-[50%_18%] shadow-lift"
+            width="736" height="920" loading="lazy" />
+        </div>
+
+        <div class="lg:col-span-7 reveal reveal-delay-1">
+          <p class="text-xs font-bold uppercase tracking-[.2em] text-clay-600">O&nbsp;mnie</p>
+          <h2 class="mt-4 font-serif text-3xl font-medium leading-tight sm:text-[2.6rem]">Alicja Went</h2>
+          <p class="mt-2 text-taupe">Neurologopeda · terapeutka Ortodoncji Funkcjonalnej MFS</p>
+          <div class="mt-6 space-y-4 text-cocoa/80">
+            <p>Nazywam się Alicja Went i&nbsp;prowadzę gabinet Przystań Logopedy w&nbsp;Rumi. Wierzę, że&nbsp;skuteczna terapia zaczyna się od&nbsp;relacji&nbsp;– od&nbsp;poczucia bezpieczeństwa, zrozumienia i&nbsp;spokojnego tempa, w&nbsp;którym dziecko lub dorosły może naprawdę się otworzyć.</p>
+            <p>W&nbsp;pracy łączę klasyczną neurologopedię z&nbsp;nowoczesnymi metodami regulacji układu nerwowego i&nbsp;terapiami manualnymi. Patrzę na&nbsp;mowę szerzej: jako na&nbsp;efekt współpracy ciała, oddechu, napięcia mięśniowego i&nbsp;emocji. Dlatego każdy plan terapii tworzę indywidualnie i&nbsp;omawiam go z&nbsp;rodzicami lub pacjentem.</p>
+          </div>
+          <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+            <li class="flex gap-4 rounded-3xl border border-line bg-peach/45 p-5">
+              <span class="pebble grid h-11 w-11 shrink-0 place-items-center bg-white text-clay-500 shadow-sm"><i data-lucide="heart-handshake" class="h-5 w-5"></i></span>
+              <div><p class="font-semibold">Empatyczne podejście</p><p class="mt-1 text-sm text-cocoa/70">Terapia w&nbsp;atmosferze akceptacji, bez pośpiechu i&nbsp;presji.</p></div>
+            </li>
+            <li class="flex gap-4 rounded-3xl border border-line bg-butter/75 p-5">
+              <span class="pebble grid h-11 w-11 shrink-0 place-items-center bg-white text-honey shadow-sm"><i data-lucide="layers" class="h-5 w-5"></i></span>
+              <div><p class="font-semibold">Spojrzenie holistyczne</p><p class="mt-1 text-sm text-cocoa/70">Mowa, ciało i&nbsp;układ nerwowy traktowane jako całość.</p></div>
+            </li>
+            <li class="flex gap-4 rounded-3xl border border-line bg-clay-50/85 p-5">
+              <span class="pebble grid h-11 w-11 shrink-0 place-items-center bg-white text-clay-500 shadow-sm"><i data-lucide="graduation-cap" class="h-5 w-5"></i></span>
+              <div><p class="font-semibold">Stałe doskonalenie</p><p class="mt-1 text-sm text-cocoa/70">Regularne szkolenia z&nbsp;zakresu neurologopedii i&nbsp;terapii manualnych.</p></div>
+            </li>
+            <li class="flex gap-4 rounded-3xl border border-line bg-oat/75 p-5">
+              <span class="pebble grid h-11 w-11 shrink-0 place-items-center bg-white text-honey shadow-sm"><i data-lucide="users" class="h-5 w-5"></i></span>
+              <div><p class="font-semibold">Współpraca z&nbsp;rodziną</p><p class="mt-1 text-sm text-cocoa/70">Jasne zalecenia i&nbsp;wsparcie w&nbsp;ćwiczeniach domowych.</p></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         OPINIE PACJENTÓW (z wizytówki Google)
+    ========================================================== -->
+    <section id="opinie" class="bg-peach/45 py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end reveal">
+          <div class="max-w-2xl">
+            <p class="text-xs font-bold uppercase tracking-[.2em] text-clay-600">Opinie pacjentów</p>
+            <h2 class="mt-4 font-serif text-3xl font-medium leading-tight sm:text-[2.6rem]">Słowa, które dodają otuchy</h2>
+            <p class="mt-4 text-cocoa/75">Prawdziwe opinie rodziców i&nbsp;pacjentów z&nbsp;wizytówki Przystani Logopedy w&nbsp;Google.</p>
+          </div>
+          <div class="flex items-center gap-4 rounded-3xl border border-line bg-white px-5 py-4 shadow-soft">
+            <svg class="h-8 w-8" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+            <div>
+              <p class="flex items-center gap-1 font-semibold">5,0 <span class="text-honey">★★★★★</span></p>
+              <p class="text-xs text-taupe">Ocena w&nbsp;Google</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Opinie z wizytówki Google -->
+        <div id="reviewsGrid" class="mt-12 grid gap-5 md:grid-cols-3">
+          <!-- Karty opinii generowane są automatycznie z listy GOOGLE_REVIEWS w skrypcie na dole strony. -->
+        </div>
+
+        <!-- Widok zastępczy, gdy lista opinii jest pusta -->
+        <div id="reviewsEmpty" class="reveal mt-12 hidden rounded-[2.25rem] border border-line bg-white/95 p-8 text-center shadow-soft sm:p-12">
+          <span class="pebble mx-auto grid h-14 w-14 place-items-center bg-butter text-honey"><i data-lucide="quote" class="h-7 w-7"></i></span>
+          <p class="mx-auto mt-5 max-w-xl font-serif text-xl text-cocoa sm:text-2xl">Najlepiej o&nbsp;naszej pracy opowiadają rodzice i&nbsp;pacjenci.</p>
+          <p class="mx-auto mt-3 max-w-lg text-cocoa/70">Wszystkie opinie, w&nbsp;ich oryginalnym brzmieniu, można przeczytać na&nbsp;wizytówce Przystani Logopedy w&nbsp;Google.</p>
+        </div>
+
+        <div class="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row reveal">
+          <a href="https://share.google/1bDWcvgbBF8cV2rae" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 font-semibold text-cocoa shadow-soft transition hover:-translate-y-0.5 hover:shadow-lift">
+            <i data-lucide="map-pin" class="h-4 w-4 text-clay-500"></i> Zobacz wszystkie opinie w&nbsp;Google
+          </a>
+          <a href="https://share.google/1bDWcvgbBF8cV2rae" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-sand bg-white/50 px-6 py-3.5 font-semibold text-cocoa transition hover:border-clay-500/50 hover:bg-white">
+            <i data-lucide="pen-line" class="h-4 w-4 text-clay-500"></i> Dodaj swoją opinię
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         KONTAKT I DOJAZD
+    ========================================================== -->
+    <section id="kontakt" class="bg-oat/85 py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="max-w-2xl reveal">
+          <p class="text-xs font-bold uppercase tracking-[.2em] text-clay-600">Kontakt i&nbsp;dojazd</p>
+          <h2 class="mt-4 font-serif text-3xl font-medium leading-tight sm:text-[2.6rem]">Zapraszam do&nbsp;Przystani</h2>
+          <p class="mt-4 text-cocoa/75">Masz pytania o&nbsp;terapię, zapisy na&nbsp;Terapię Ręki lub TUS? Napisz lub zadzwoń&nbsp;– chętnie pomogę dobrać odpowiednią formę wsparcia.</p>
+        </div>
+
+        <div class="mt-12 grid gap-6 lg:grid-cols-12">
+          <!-- Dane kontaktowe + mapa -->
+          <div class="space-y-6 lg:col-span-5 reveal">
+            <div class="rounded-[2rem] border border-line bg-white/95 p-7 shadow-soft">
+              <h3 class="font-serif text-xl font-medium">Przystań Logopedy&nbsp;– Alicja Went</h3>
+              <ul class="mt-6 space-y-5">
+                <li class="flex gap-4">
+                  <span class="pebble grid h-11 w-11 shrink-0 place-items-center bg-peach text-clay-500"><i data-lucide="map-pin" class="h-5 w-5"></i></span>
+                  <div><p class="text-xs font-medium uppercase tracking-wider text-taupe">Adres</p><p class="mt-0.5 font-medium">ul.&nbsp;Wejhera 3/2, 84-230&nbsp;Rumia</p></div>
+                </li>
+                <li class="flex gap-4">
+                  <span class="pebble grid h-11 w-11 shrink-0 place-items-center bg-butter text-honey"><i data-lucide="phone" class="h-5 w-5"></i></span>
+                  <div><p class="text-xs font-medium uppercase tracking-wider text-taupe">Telefon</p><a href="tel:+48503754764" class="mt-0.5 block font-medium hover:text-clay-500">+48 503 754 764</a></div>
+                </li>
+                <li class="flex gap-4">
+                  <span class="pebble grid h-11 w-11 shrink-0 place-items-center bg-clay-50 text-clay-500"><i data-lucide="mail" class="h-5 w-5"></i></span>
+                  <div><p class="text-xs font-medium uppercase tracking-wider text-taupe">E-mail</p><a href="mailto:wentalicja@gmail.com" class="mt-0.5 block font-medium hover:text-clay-500">wentalicja@gmail.com</a></div>
+                </li>
+              </ul>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=ul.+Wejhera+3%2F2%2C+84-230+Rumia" target="_blank" rel="noopener" class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-clay-500 hover:text-clay-700">
+                <i data-lucide="navigation" class="h-4 w-4"></i> Wyznacz trasę dojazdu
+              </a>
+            </div>
+
+            <div class="overflow-hidden rounded-[2rem] border border-line bg-white p-2 shadow-soft">
+              <iframe
+                title="Mapa dojazdu – Przystań Logopedy, ul. Wejhera 3/2, Rumia"
+                src="https://www.google.com/maps?q=ul.+Wejhera+3%2F2,+84-230+Rumia&z=16&output=embed"
+                class="h-72 w-full rounded-[1.5rem] border-0 sepia-[.15]"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            </div>
+          </div>
+
+          <!-- Formularz kontaktowy (Web3Forms – działa na GitHub Pages) -->
+          <div class="lg:col-span-7 reveal reveal-delay-1">
+            <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="rounded-[2rem] border border-line bg-white/95 p-7 shadow-soft sm:p-9" novalidate>
+              <input type="hidden" name="access_key" value="eaf9ca63-6e66-4a26-8003-4ee0a73d535a" />
+              <input type="hidden" name="subject" value="Nowa wiadomość ze strony Przystań Logopedy" />
+              <input type="hidden" name="from_name" value="Przystań Logopedy – formularz" />
+              <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
+
+              <h3 class="font-serif text-2xl font-medium">Napisz wiadomość</h3>
+              <p class="mt-2 text-sm text-cocoa/70">Odpowiadam zazwyczaj w&nbsp;ciągu 1–2&nbsp;dni roboczych.</p>
+
+              <div class="mt-7 grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label for="imie" class="mb-2 block text-sm font-semibold">Imię <span class="text-clay-500">*</span></label>
+                  <input id="imie" name="imie" type="text" autocomplete="given-name" required class="field" placeholder="np. Anna" />
+                </div>
+                <div>
+                  <label for="kontaktDane" class="mb-2 block text-sm font-semibold">Telefon lub e-mail <span class="text-clay-500">*</span></label>
+                  <input id="kontaktDane" name="kontakt" type="text" autocomplete="email" required class="field" placeholder="np. 600 000 000" />
+                </div>
+                <div class="sm:col-span-2">
+                  <label for="temat" class="mb-2 block text-sm font-semibold">Temat</label>
+                  <div class="relative">
+                    <select id="temat" name="temat" class="field appearance-none pr-10">
+                      <option>Zapisy na&nbsp;Terapię Ręki / TUS</option>
+                      <option>Konsultacja neurologopedyczna</option>
+                      <option>Terapia logopedyczna dziecka</option>
+                      <option>Terapia dla osoby dorosłej</option>
+                      <option>Terapia czaszkowo-krzyżowa / neurotaktylna</option>
+                      <option>Stymulatory MFS / elektrostymulacja</option>
+                      <option>Inne pytanie</option>
+                    </select>
+                    <i data-lucide="chevron-down" class="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-taupe"></i>
+                  </div>
+                </div>
+                <div class="sm:col-span-2">
+                  <label for="wiadomosc" class="mb-2 block text-sm font-semibold">Wiadomość <span class="text-clay-500">*</span></label>
+                  <textarea id="wiadomosc" name="wiadomosc" rows="5" required class="field resize-y" placeholder="Opisz krótko, w czym mogę pomóc (np. wiek dziecka, główna trudność)."></textarea>
+                </div>
+              </div>
+
+              <label class="mt-6 flex cursor-pointer items-start gap-3 text-sm text-cocoa/75">
+                <input type="checkbox" name="zgoda_rodo" value="tak" required class="mt-1 h-4 w-4 shrink-0 rounded border-sand accent-[#A85C45]" />
+                <span>Wyrażam zgodę na&nbsp;przetwarzanie moich danych osobowych przez Przystań Logopedy&nbsp;– Alicja Went w&nbsp;celu udzielenia odpowiedzi na&nbsp;wiadomość, zgodnie z&nbsp;RODO. Szczegóły w&nbsp;<a href="polityka-prywatnosci.html" class="font-semibold text-clay-500 underline decoration-sand underline-offset-4">Polityce Prywatności</a>. <span class="text-clay-500">*</span></span>
+              </label>
+
+              <p id="formError" class="mt-4 hidden rounded-2xl bg-peach px-4 py-3 text-sm text-clay-700" role="alert"></p>
+
+              <button type="submit" class="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-clay-500 px-7 py-4 font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-clay-600 disabled:cursor-wait disabled:opacity-70 sm:w-auto">
+                <i data-lucide="send" class="h-4 w-4"></i> <span class="btn-label">Wyślij wiadomość</span>
+              </button>
+
+              <div id="formSuccess" class="mt-6 hidden items-start gap-3 rounded-2xl border border-honey/30 bg-butter p-5 text-sm text-cocoa" role="status">
+                <i data-lucide="circle-check" class="h-5 w-5 shrink-0 text-honey"></i>
+                <p><strong>Dziękuję za&nbsp;wiadomość!</strong> Odezwę się najszybciej, jak to&nbsp;możliwe.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       STOPKA (ciepły kasztan dopasowany do palety)
+  ========================================================== -->
+  <footer class="bg-mocha text-cream/85">
+    <div class="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-3">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="pebble grid h-10 w-10 place-items-center bg-butter text-mocha"><i data-lucide="anchor" class="h-5 w-5"></i></span>
+          <span class="font-serif text-lg font-semibold text-cream">Przystań Logopedy</span>
+        </div>
+        <p class="mt-4 max-w-xs text-sm text-cream/70">Gabinet neurologopedyczny Alicji Went w&nbsp;Rumi. Spokojna przestrzeń rozwoju mowy i&nbsp;regulacji układu nerwowego.</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-butter">Kontakt</p>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li>ul.&nbsp;Wejhera 3/2, 84-230&nbsp;Rumia</li>
+          <li><a href="tel:+48503754764" class="hover:text-white">+48 503 754 764</a></li>
+          <li><a href="mailto:wentalicja@gmail.com" class="hover:text-white">wentalicja@gmail.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[.2em] text-butter">Na&nbsp;skróty</p>
+        <ul class="mt-4 grid grid-cols-2 gap-2 text-sm">
+          <li><a href="#o-mnie" class="hover:text-white">O&nbsp;gabinecie</a></li>
+          <li><a href="#oferta" class="hover:text-white">Oferta</a></li>
+          <li><a href="#nowosci" class="hover:text-white">Nowości</a></li>
+          <li><a href="#opinie" class="hover:text-white">Opinie</a></li>
+          <li><a href="#kontakt" class="hover:text-white">Kontakt</a></li>
+          <li><a href="polityka-prywatnosci.html" class="hover:text-white">Prywatność</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/15">
+      <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-6 text-xs text-cream/60 sm:flex-row sm:px-8">
+        <p>© <span id="year">2026</span> Przystań Logopedy&nbsp;– Alicja Went. Wszelkie prawa zastrzeżone.</p>
+        <a id="polityka-prywatnosci" href="polityka-prywatnosci.html" class="hover:text-white">Polityka Prywatności</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Pływający przycisk rezerwacji (zawsze widoczny w prawym dolnym rogu) -->
+  <div id="floatingGoogleBooking">
+    <!-- Google Calendar Appointment Scheduling begin -->
+    <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+    <script>
+      (function () {
+        var target = document.currentScript;
+        window.addEventListener('load', function () {
+          if (window.calendar && calendar.schedulingButton) {
+            calendar.schedulingButton.load({
+              url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3v-XLUO3gjYeyJ4Y-MaZ7KHJMwCypeMrlw8d97GzIDZLybJM0lP0N0-dG_HuprnOUPTRqPKtFE?gv=true',
+              color: '#F6BF26',
+              label: "Um\xF3w wizyt\u0119",
+              target: target,
+            });
+          }
+        });
+      })();
+    </script>
+    <!-- end Google Calendar Appointment Scheduling -->
+  </div>
+
+  <script>
+    /* ---------------------------------------------------------
+       OPINIE Z WIZYTÓWKI GOOGLE
+       Przepisz tutaj opinie z wizytówki Google (bez zmian w treści).
+       Każda opinia: { autor: 'Imię N.', gwiazdki: 5, tresc: '...', data: 'np. 2 miesiące temu' }
+       Pierwsze 3 wyświetlą się jako karty. Gdy lista jest pusta,
+       pojawi się elegancki odnośnik do wizytówki Google.
+    --------------------------------------------------------- */
+    const GOOGLE_REVIEWS = [
+      // { autor: 'Imię N.', gwiazdki: 5, tresc: 'Treść opinii z Google…', data: '' },
+    ];
+
+    /* ---------------------------------------------------------
+       TYPOGRAFIA – twarde spacje po krótkich wyrazach (sierotki),
+       aby „i”, „w”, „z”, „u” itp. nie zostawały na końcu linii.
+    --------------------------------------------------------- */
+    const ORPHANS = /(?<![^\s(„"'«\u00A0])([aiouwz]|we|ze|na|do|od|po|za|że|bo|by|ku|to|ul\.|nr|np\.|tel\.|dr|mgr|ok\.|al\.|im\.|m\.in\.|tj\.|godz\.)[ \t\r\n]+(?=\S)/gi;
+    const NUMBERS = /(?<![^\s(„"'«\u00A0])(\d[\d.,\/–-]*)[ \t\r\n]+(?=[a-ząćęłńóśźż%])/gi;
+    const fixOrphans = text => String(text)
+      .replace(ORPHANS, '$1\u00A0')
+      .replace(NUMBERS, '$1\u00A0')
+      .replace(/(\S)[ \t\r\n]+(?=[–—] )/g, '$1\u00A0');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      /* Naprawa przezroczystego tła w wyskakującym oknie rezerwacji */
+      const bookingObserver = new MutationObserver(() => {
+        document.querySelectorAll('iframe[src*="calendar.google.com"]').forEach(frame => {
+          frame.style.setProperty('background', '#FFFFFF', 'important');
+          frame.style.setProperty('background-color', '#FFFFFF', 'important');
+        });
+      });
+      bookingObserver.observe(document.body, { childList: true, subtree: true });
+
+      /* Opinie z Google */
+      const grid = document.getElementById('reviewsGrid');
+      const esc = t => fixOrphans(t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      if (GOOGLE_REVIEWS.length) {
+        grid.innerHTML = GOOGLE_REVIEWS.slice(0, 3).map((r, i) => {
+          const n = Math.max(0, Math.min(5, Number(r.gwiazdki) || 5));
+          return `<figure class="reveal reveal-delay-${i} flex flex-col rounded-[2rem] border border-line bg-white/95 p-7 shadow-soft">
+            <div class="flex items-center justify-between">
+              <span class="text-lg tracking-wider text-honey" aria-label="Ocena ${n} na 5">${'★'.repeat(n)}<span class="text-sand">${'★'.repeat(5 - n)}</span></span>
+              <i data-lucide="quote" class="h-6 w-6 text-sand"></i>
+            </div>
+            <blockquote class="mt-5 flex-1 text-[15px] leading-relaxed text-cocoa/80">„${esc(r.tresc)}”</blockquote>
+            <figcaption class="mt-6 flex items-center gap-3 border-t border-line pt-5">
+              <span class="pebble grid h-10 w-10 place-items-center bg-butter font-serif text-sm font-semibold text-taupe">${esc((r.autor || '?').trim().charAt(0).toUpperCase())}</span>
+              <span><span class="block text-sm font-semibold">${esc(r.autor || 'Opinia z Google')}</span><span class="block text-xs text-taupe">Opinia z Google${r.data ? ' · ' + esc(r.data) : ''}</span></span>
+            </figcaption>
+          </figure>`;
+        }).join('');
+      } else {
+        grid.classList.add('hidden');
+        document.getElementById('reviewsEmpty').classList.remove('hidden');
+      }
+
+      if (window.lucide) lucide.createIcons();
+
+      /* Nawigacja – tło po przewinięciu */
+      const navbar = document.getElementById('navbar');
+      const onScroll = () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 12);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      /* Menu mobilne */
+      const menuBtn = document.getElementById('menuBtn');
+      const menu = document.getElementById('mobileMenu');
+      const setMenu = open => {
+        menuBtn.setAttribute('aria-expanded', String(open));
+        menuBtn.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu');
+        menu.classList.toggle('opacity-0', !open);
+        menu.classList.toggle('pointer-events-none', !open);
+        menu.classList.toggle('scale-y-95', !open);
+        menuBtn.querySelector('.icon-open').classList.toggle('hidden', open);
+        menuBtn.querySelector('.icon-close').classList.toggle('hidden', !open);
+        if (open) navbar.classList.add('scrolled'); else onScroll();
+      };
+      menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+      document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => setMenu(false)));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 1024) setMenu(false); });
+
+      /* Podświetlenie aktywnej sekcji w menu */
+      const links = document.querySelectorAll('.nav-link');
+      const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          links.forEach(l => {
+            const active = l.getAttribute('href') === '#' + entry.target.id;
+            l.classList.toggle('text-clay-500', active);
+          });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      ['o-mnie', 'oferta', 'nowosci', 'opinie', 'kontakt'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) sectionObserver.observe(el);
+      });
+
+      /* Animacje pojawiania się */
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      /* Formularz kontaktowy – wysyłka AJAX przez Web3Forms (działa na GitHub Pages) */
+      const form = document.getElementById('contactForm');
+      const errorBox = document.getElementById('formError');
+      const successBox = document.getElementById('formSuccess');
+      const btn = form.querySelector('button[type="submit"]');
+      const showError = msg => { errorBox.textContent = fixOrphans(msg); errorBox.classList.remove('hidden'); };
+
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        errorBox.classList.add('hidden');
+        successBox.classList.add('hidden');
+        successBox.classList.remove('flex');
+
+        const data = new FormData(form);
+        const imie = data.get('imie')?.trim();
+        const kontakt = data.get('kontakt')?.trim();
+        const wiadomosc = data.get('wiadomosc')?.trim();
+
+        if (!imie || !kontakt || !wiadomosc) {
+          return showError('Uzupełnij, proszę, imię, dane kontaktowe i treść wiadomości.');
+        }
+        if (!data.get('zgoda_rodo')) {
+          return showError('Aby wysłać wiadomość, zaznacz zgodę na przetwarzanie danych osobowych.');
+        }
+
+        const payload = Object.fromEntries(data);
+        payload.botcheck = form.querySelector('[name="botcheck"]').checked;
+        if (kontakt.includes('@')) payload.replyto = kontakt;
+
+        btn.disabled = true;
+        btn.querySelector('.btn-label').textContent = 'Wysyłanie…';
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const result = await res.json();
+          if (!res.ok || !result.success) throw new Error(result.message || res.status);
+          form.reset();
+          successBox.classList.remove('hidden');
+          successBox.classList.add('flex');
+        } catch (err) {
+          showError('Nie udało się wysłać wiadomości. Spróbuj ponownie lub zadzwoń: +48 503 754 764.');
+        } finally {
+          btn.disabled = false;
+          btn.querySelector('.btn-label').textContent = 'Wyślij wiadomość';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
